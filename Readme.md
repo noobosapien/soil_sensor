@@ -1,5 +1,3 @@
-<img width="3024" height="4032" alt="IMG_0426" src="https://github.com/user-attachments/assets/67c65fde-3d6b-48e9-be55-4a1b6e67d32f" />
-
 # 🌱 ESP32 Soil Moisture Monitoring System
 
 A production-style embedded IoT system built on the **ESP32-WROOM-32** using ESP-IDF, featuring real-time sensing, persistent configuration, and a lightweight HTTP interface.
@@ -228,6 +226,9 @@ pio device monitor
 <img width="3024" height="4032" alt="IMG_0427" src="https://github.com/user-attachments/assets/49cb6cb2-8a76-4c4c-91fc-fd015c6ab97a" />
 <img width="3024" height="4032" alt="IMG_0428" src="https://github.com/user-attachments/assets/afacc42b-5302-43f9-afa0-cc17b215864c" />
 <img width="3024" height="4032" alt="IMG_0429" src="https://github.com/user-attachments/assets/4cbff172-ff37-4981-9f9b-12ddd55b71e0" />
+
+<img width="525" height="530" alt="Screenshot from 2026-04-23 16-19-54" src="https://github.com/user-attachments/assets/7a87e697-d452-49e2-b494-a3e4e1e671d3" />
+<img width="525" height="530" alt="Screenshot from 2026-04-23 16-20-13" src="https://github.com/user-attachments/assets/6e386fac-2ab1-4a86-8528-7da24ab6bb9a" />
 
 ---
 
