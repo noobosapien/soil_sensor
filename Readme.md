@@ -1,3 +1,4 @@
+<img width="3024" height="4032" alt="IMG_0426" src="https://github.com/user-attachments/assets/67c65fde-3d6b-48e9-be55-4a1b6e67d32f" />
 
 # 🌱 ESP32 Soil Moisture Monitoring System
 
@@ -223,8 +224,10 @@ pio device monitor
 ---
 
 ## 📸 Demo
-
-
+<img width="3024" height="4032" alt="IMG_0426" src="https://github.com/user-attachments/assets/da3f9edd-dadb-4ce7-a8cc-366e726cb32b" />
+<img width="3024" height="4032" alt="IMG_0427" src="https://github.com/user-attachments/assets/49cb6cb2-8a76-4c4c-91fc-fd015c6ab97a" />
+<img width="3024" height="4032" alt="IMG_0428" src="https://github.com/user-attachments/assets/afacc42b-5302-43f9-afa0-cc17b215864c" />
+<img width="3024" height="4032" alt="IMG_0429" src="https://github.com/user-attachments/assets/4cbff172-ff37-4981-9f9b-12ddd55b71e0" />
 
 ---
 
