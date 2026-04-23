@@ -13,8 +13,8 @@
 #include "networking.h"
 #include "http_server.h"
 
-#define SSID "SPARK-YLNZ5A_EXT"
-#define PASSWORD "LSZPJFFL9Y"
+#define SSID "<WIFI SSID>"
+#define PASSWORD "<PASSWORD>"
 
 // Pin 34 - ADC1 Channel 6 in ESP32 Devkit V1
 #define SOIL_UNIT ADC_UNIT_1

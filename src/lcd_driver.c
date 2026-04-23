@@ -97,7 +97,7 @@ void init_display_i2c()
         .scl_io_num = SCL_PIN,
         .clk_source = I2C_CLK_SRC_DEFAULT,
         .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = true};
+        .flags.enable_internal_pullup = false}; // Use 2k pull up resistors
 
     i2c_master_bus_handle_t i2c_bus;
     ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_master, &i2c_bus));
