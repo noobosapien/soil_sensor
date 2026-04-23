@@ -9,13 +9,18 @@
 #include <nvs_flash.h>
 
 #include "lcd_driver.h"
+#include "storage.h"
+#include "networking.h"
+#include "http_server.h"
+
+#define SSID "SPARK-YLNZ5A_EXT"
+#define PASSWORD "LSZPJFFL9Y"
 
 // Pin 34 - ADC1 Channel 6 in ESP32 Devkit V1
-
 #define SOIL_UNIT ADC_UNIT_1
 #define SOIL_UNIT_ADC_CHANNEL ADC_CHANNEL_6
 
-#define TAG "Soil Sensor: "
+#define TAG "Soil Sensor"
 #define SAMPLE_SIZE 32
 
 int get_percentage(int raw_input)
@@ -50,6 +55,11 @@ void app_main()
     setenv("TZ", "NZST-12:00:00NZDT-13:00:00,M9.5.0,M4.1.0", 0);
     tzset();
 
+    storage_write_string("ssid", SSID); // Set the SSID in the NVS
+    storage_write_string("password", PASSWORD); // Set the Password in the NVS
+
+    wifi_connect();
+
     // For oneshot mode
     // Resource allocation
     adc_oneshot_unit_handle_t adc_handle;
@@ -77,20 +87,37 @@ void app_main()
     int Vmax = 1;
     int Dmax = pow(2, ADC_BITWIDTH_DEFAULT);
 
+    init_display_i2c(); // Initialise the display driver
+
+    wifi_connect(); // Initialize the wifi connection
+    webserver(); // Initialize the web server
+
     while (1)
     {
-        // Read the raw value from the channel
-        ESP_ERROR_CHECK(adc_oneshot_read(adc_handle, SOIL_UNIT_ADC_CHANNEL, &raw_result));
 
-        // Calculate the Vout in mV
-        Vout = (raw_result * Vmax / Dmax);
+        int total = 0;
+
+        for (int i = 0; i < SAMPLE_SIZE; i++)
+        {
+            // Read the raw value from the channel
+            ESP_ERROR_CHECK(adc_oneshot_read(adc_handle, SOIL_UNIT_ADC_CHANNEL, &raw_result));
+            // Calculate the Vout in mV
+            total += (raw_result * Vmax / Dmax);
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+
+        Vout = total / SAMPLE_SIZE; // Get the average as the Vout
 
         // Show the result
         ESP_LOGI(TAG, "Moisture percentage >> %d%%", get_percentage(Vout));
 
-        display();
+        display(get_percentage(Vout)); // Display on the screen
 
-        vTaskDelay(pdMS_TO_TICKS(5000));
+        wifi_connect(); // Show the connection status, and connect if not connected
+        port(); // Show the port the server is running on
+        set_moisture(get_percentage(Vout)); // Set the value of moisture to send from the JSON in the web server
+
+        vTaskDelay(pdMS_TO_TICKS(3350)); // 5000 - 50 ticks delayed on display, 32 samples with 50
     }
 
     // Cleanup the handler
